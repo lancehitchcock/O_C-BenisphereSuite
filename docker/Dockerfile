@@ -14,7 +14,12 @@ RUN apt-get update; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists
 
-ADD dependencies/arduino-teensy-1.8.1.tar.gz /opt/
+RUN wget https://downloads.arduino.cc/arduino-1.8.1-linux64.tar.xz -O /opt/install-1.8.1.tar.xz; \
+    cd /opt; \
+    tar -xf install-1.8.1.tar.xz; \
+    rm install-1.8.1.tar.xz
+
+ADD dependencies/teensy-1.3.5.tar.gz /opt/
 ADD dependencies/build.sh /build.sh
 
 WORKDIR /source
